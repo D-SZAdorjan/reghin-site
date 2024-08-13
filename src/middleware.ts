@@ -18,6 +18,8 @@ function getLocale(request: NextRequest): string | undefined {
     return matchLocale(languages, locales, i18n.defaultLocale);
 }
 
+const skipLocalization = [/^\/admin(\/.*)?$/];
+
 export function middleware(request: NextRequest, response: NextResponse) {
     const pathname = request.nextUrl.pathname;
 
@@ -32,27 +34,33 @@ export function middleware(request: NextRequest, response: NextResponse) {
     // )
     //   return
 
-    // Check if there is any supported locale in the pathname
-    const pathnameIsMissingLocale = i18n.locales.every(
-        (locale) => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
-    );
+    // Check if the current pathname matches any of the specified patterns
+    const shouldProcess = !skipLocalization.some((pattern) => pattern.test(pathname));
 
-    // Redirect if there is no locale
-    if (pathnameIsMissingLocale) {
-        const locale = getLocale(request);
-
-        // e.g. incoming request is /products
-        // The new URL is now /en-US/products
-        return NextResponse.redirect(
-            new URL(
-                `/${locale}${pathname.startsWith("/") ? "" : "/"}${pathname}`,
-                request.url
-            )
+    if(shouldProcess){
+        // Check if there is any supported locale in the pathname
+        const pathnameIsMissingLocale = i18n.locales.every(
+            (locale) => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
         );
+    
+        // Redirect if there is no locale
+        if (pathnameIsMissingLocale) {
+            const locale = getLocale(request);
+    
+            // e.g. incoming request is /products
+            // The new URL is now /en-US/products
+            return NextResponse.redirect(
+                new URL(
+                    `/${locale}${pathname.startsWith("/") ? "" : "/"}${pathname}`,
+                    request.url
+                )
+            );
+        }
     }
+
 }
 
 export const config = {
     // Matcher ignoring `/_next/` and `/api/`
-    matcher: ["/((?!api|_next/static|_next/image|favicon.ico|images|robots.txt).*)"],
+    matcher: ["/((?!api|_next/static|_next/image|favicon.ico|images|auth|robots.txt).*)"],
 };
