@@ -1,25 +1,23 @@
+"use client"
+import { login } from "@/actions/authActions";
 import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import React from "react";
 
 const page = () => {
-  async function handleSignIn(formData: FormData){
-    "use server"
-    const email = formData.get("email") as string;
-    const password = formData.get("password") as string;
+  const router = useRouter();
+  
+  const handleSignIn = async (formData: FormData) => {
+    const result = await login(formData);
     
-    // try{
-    //   await signIn("credentials", {
-    //     email: email,
-    //     password: password,
-    //     redirectTo: "/admin"
-    //   });
-    // }
-    // catch(e){
-    //   console.error(e);
-    // }
-    //redirect("/admin");
+    if(result.error){
+      console.error(result.error);
+    }else{
+      router.push('/admin/dashboard');
+      router.refresh();
+    }
   }
+
   return (
     <>
       <div className="flex min-h-full flex-col justify-center">
@@ -100,11 +98,14 @@ const page = () => {
                 </div>
 
                 <div className="mb-5">
-                  <input
+                  <button
                     type="submit"
-                    value="Sign In"
                     className="w-full cursor-pointer rounded-lg border border-primary bg-primary p-4 text-white transition hover:bg-opacity-90"
-                  />
+                  >Sign In</button>
+                  <button
+                    type="submit"
+                    className="mt-3 w-full cursor-pointer rounded-lg border border-primary bg-primary p-4 text-white transition hover:bg-opacity-90"
+                  >Sign Up</button>
                 </div>
               </form>
             </div>

@@ -3,13 +3,29 @@ import Link from "next/link";
 import Image from "next/image";
 import ClickOutside from "@/components/ClickOutside";
 import userFallbackImage from "../../../public/img/user/user01.png";
+import { useRouter } from "next/navigation";
+import { logout } from "@/actions/authActions";
+import { User } from "@supabase/supabase-js";
 
 const DropdownUser = ({
   user
 }: Readonly<{
-  user: {email: string} | undefined
+  user: User | undefined
 }>) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  const router = useRouter();
+
+  const handleSignOut = async () => {
+    const result = await logout();
+
+    if(result.error){
+      console.error(result.error);
+    }else{
+      router.push('/auth/sign-in');
+      router.refresh();
+    }
+  }
   
   return (
     <ClickOutside onClick={() => setDropdownOpen(false)} className="relative">
@@ -133,7 +149,7 @@ const DropdownUser = ({
               </Link>
             </li>
           </ul>
-          <button className="flex items-center gap-3.5 px-6 py-4 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base">
+          <button onClick={handleSignOut} className="flex items-center gap-3.5 px-6 py-4 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base">
             <svg
               className="fill-current"
               width="22"

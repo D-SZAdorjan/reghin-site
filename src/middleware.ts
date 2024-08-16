@@ -4,6 +4,7 @@ import { i18n } from "../i18n.config";
 
 import { match as matchLocale } from "@formatjs/intl-localematcher";
 import Negotiator from "negotiator";
+import { updateSession } from "./lib/supabase/middleware";
 
 // GET LOCALE HANDLER
 function getLocale(request: NextRequest): string | undefined {
@@ -18,9 +19,9 @@ function getLocale(request: NextRequest): string | undefined {
     return matchLocale(languages, locales, i18n.defaultLocale);
 }
 
-const skipLocalization = [/^\/admin(\/.*)?$/];
+const skipLocalization = [/^\/admin(\/[^\/]+){1,}$/, /^\/auth(\/[^\/]+){1,}$/];
 
-export function middleware(request: NextRequest, response: NextResponse) {
+export async function middleware(request: NextRequest, response: NextResponse) {
     const pathname = request.nextUrl.pathname;
 
     // // `/_next/` and `/api/` are ignored by the watcher, but we need to ignore files in `public` manually.
@@ -56,11 +57,13 @@ export function middleware(request: NextRequest, response: NextResponse) {
                 )
             );
         }
+    }else{
+        return await updateSession(request)
     }
 
 }
 
 export const config = {
     // Matcher ignoring `/_next/` and `/api/`
-    matcher: ["/((?!api|_next/static|_next/image|favicon.ico|images|auth|robots.txt).*)"],
+    matcher: ["/((?!api|_next/static|_next/image|favicon.ico|images|robots.txt).*)"],
 };
