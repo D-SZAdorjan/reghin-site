@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import Sidebar from "@/components/Sidebar";
-import Header from "@/components/Header";
+import Sidebar from "@/components/Admin/Sidebar";
+import Header from "@/components/Admin/Header"
 import { User } from "@supabase/supabase-js";
 
 export default function ContentWrapper({

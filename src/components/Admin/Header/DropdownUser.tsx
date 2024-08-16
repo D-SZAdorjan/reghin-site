@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import ClickOutside from "@/components/ClickOutside";
+import ClickOutside from "@/components/Admin/ClickOutside";
 import userFallbackImage from "../../../public/img/user/user01.png";
 import { useRouter } from "next/navigation";
 import { logout } from "@/actions/authActions";

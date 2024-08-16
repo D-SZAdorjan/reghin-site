@@ -4,8 +4,8 @@ import React, { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import SidebarItem from "@/components/Sidebar/SidebarItem";
-import ClickOutside from "@/components/ClickOutside";
+import SidebarItem from "@/components/Admin/Sidebar/SidebarItem";
+import ClickOutside from "@/components/Admin/ClickOutside";
 import useLocalStorage from "@/hooks/useLocalStorage";
 
 interface SidebarProps {

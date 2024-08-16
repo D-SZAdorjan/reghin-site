@@ -1,8 +1,6 @@
 import Link from "next/link";
 import DarkModeSwitcher from "./DarkModeSwitcher";
-import DropdownMessage from "./DropdownMessage";
-import DropdownNotification from "./DropdownNotification";
-import DropdownUser from "./DropdownUser";
+import DropdownUser from "@/components/Admin/Header/DropdownUser";
 import Image from "next/image";
 import { User } from "@supabase/supabase-js";
 
