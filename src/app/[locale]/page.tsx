@@ -1,3 +1,4 @@
+import { getAll } from "@/api/notablePersonalities";
 import { getIntl } from "@/i18n";
 import { faMeta, faXbox } from "@fortawesome/free-brands-svg-icons";
 import { faHourglass, faHourglass2, faHourglassEmpty, faSmile } from "@fortawesome/free-regular-svg-icons";
@@ -13,6 +14,7 @@ export default async function Home({params} : {
 
   const { locale } = params
   const translations = await getIntl(locale);
+  const personalities = await getAll(locale);
 
   return (
     <main className="flex h-full w-full items-center justify-center">
