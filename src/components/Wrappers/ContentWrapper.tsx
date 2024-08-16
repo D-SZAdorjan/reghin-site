@@ -3,13 +3,14 @@
 import { useState } from "react";
 import Sidebar from "@/components/Sidebar";
 import Header from "@/components/Header";
+import { User } from "@supabase/supabase-js";
 
 export default function ContentWrapper({
   children,
   user
 }: Readonly<{
   children: React.ReactNode;
-  user: {email: string} | undefined
+  user: User | undefined
 }>) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   return (
