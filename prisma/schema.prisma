@@ -1,14 +1,54 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("SUPABASE_DATABASE_URL")
+  directUrl = env("SUPABASE_DIRECT_URL")
+}
+
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model buildings {
+  id           BigInt    @id @default(autoincrement())
+  name         String?   @default("") @db.VarChar
+  image        String?
+  description  Json?     @default("{\"de\": \"\", \"en\": \"\", \"fr\": \"\", \"hu\": \"\", \"ro\": \"\"}")
+  open_hours   Json?     @default("{\"de\": \"\", \"en\": \"\", \"fr\": \"\", \"hu\": \"\", \"ro\": \"\"}")
+  address      Json?     @default("{\"de\": \"\", \"en\": \"\", \"fr\": \"\", \"hu\": \"\", \"ro\": \"\"}")
+  contact_info Json?     @default("{\"de\": \"\", \"en\": \"\", \"fr\": \"\", \"hu\": \"\", \"ro\": \"\"}")
+  is_visitable Boolean?  @default(false)
+  priority     BigInt?   @default(0)
+  published    Boolean?  @default(false)
+  created_at   DateTime  @default(now()) @db.Timestamptz(6)
+  updated_at   DateTime? @default(now()) @db.Timestamptz(6)
+}
+
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model churches {
+  id           BigInt    @id @default(autoincrement())
+  name         String?   @default("") @db.VarChar
+  image        String?
+  description  Json?     @default("{\"de\": \"\", \"en\": \"\", \"fr\": \"\", \"hu\": \"\", \"ro\": \"\"}")
+  open_hours   Json?     @default("{\"de\": \"\", \"en\": \"\", \"fr\": \"\", \"hu\": \"\", \"ro\": \"\"}")
+  address      Json?     @default("{\"de\": \"\", \"en\": \"\", \"fr\": \"\", \"hu\": \"\", \"ro\": \"\"}")
+  contact_info Json?     @default("{\"de\": \"\", \"en\": \"\", \"fr\": \"\", \"hu\": \"\", \"ro\": \"\"}")
+  is_visitable Boolean?  @default(false)
+  priority     BigInt?   @default(0)
+  published    Boolean?  @default(false)
+  created_at   DateTime  @default(now()) @db.Timestamptz(6)
+  updated_at   DateTime? @default(now()) @db.Timestamptz(6)
+}
+
+model notable_personalities {
+  id          BigInt    @id @default(autoincrement())
+  first_name  String?   @default("") @db.VarChar
+  last_name   String?   @default("") @db.VarChar
+  image       String?
+  description Json?     @default("{\"de\": \"\", \"en\": \"\", \"fr\": \"\", \"hu\": \"\", \"ro\": \"\"}")
+  lead        Json?     @default("{\"de\": \"\", \"en\": \"\", \"fr\": \"\", \"hu\": \"\", \"ro\": \"\"}")
+  priority    BigInt?   @default(0)
+  published   Boolean?  @default(false)
+  created_at  DateTime  @default(now()) @db.Timestamptz(6)
+  updated_at  DateTime? @default(now()) @db.Timestamptz(6)
 }
