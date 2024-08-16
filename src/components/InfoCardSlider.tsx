@@ -1,7 +1,5 @@
 "use client";
-import { Building } from "@/types/Building";
-import { Church } from "@/types/Church";
-import { Person } from "@/types/Person";
+import { PrismaClient, notable_personalities as Person, buildings as Building, churches as  Church} from "@prisma/client";
 import {
   faArrowLeft,
   faArrowRight,
@@ -120,7 +118,9 @@ const InfoCardSlider: React.FC<ComponentProps> = ({
                         <div className="tour-card-rating mt-1 text-xs">
                           <div className="flex items-center">
                             <span className="text-xs text-[#05073C]">
-                              {item.lead}
+                              {
+                                item.lead?.toString()
+                              }
                             </span>
                           </div>
                         </div>
