@@ -152,7 +152,7 @@ const UpdateNotablePersonalityPage = () => {
     // Define the async function inside useEffect
     const fetchData = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/api/notable-personalities?id=${slug}`); // API call
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_ROUTE}notable-personalities?id=${slug}`); // API call
         const jsonData = await response.json();
         const data = SuperJSON.deserialize<Person>(jsonData.data);
         setFormData({

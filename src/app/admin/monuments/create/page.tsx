@@ -260,7 +260,7 @@ const CreateMonumentPage = () => {
     // Define the async function inside useEffect
     const fetchData = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/api/monument-categories`); // API call
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_ROUTE}monument-categories`); // API call
         const jsonData = await response.json();
         const data = SuperJSON.deserialize<MonumentCategory[]>(jsonData.data);
 

@@ -233,7 +233,7 @@ const CreateArticlePage = () => {
     // Define the async function inside useEffect
     const fetchData = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/api/article-categories`); // API call
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_ROUTE}article-categories`); // API call
         const jsonData = await response.json();
         const data = SuperJSON.deserialize<ArticleCategory[]>(jsonData.data);
 

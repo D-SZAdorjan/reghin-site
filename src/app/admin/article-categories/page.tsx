@@ -11,7 +11,7 @@ const ArticleCategoriesPage = async () => {
   let jsonData;
 
   try{
-    const response = await fetch("http://localhost:3000/api/article-categories");
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_ROUTE}article-categories`);
     jsonData = await response.json();
     data = SuperJSON.deserialize<ArticleCategory[]>(jsonData.data);
   }catch(error){

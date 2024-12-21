@@ -270,7 +270,7 @@ const UpdateMonumentPage = () => {
     const fetchData = async () => {
       try {
         const categoryResponse = await fetch(
-          `http://localhost:3000/api/monument-categories`
+          `${process.env.NEXT_PUBLIC_API_BASE_ROUTE}monument-categories`
         ); // API call
         const categoryJsonData = await categoryResponse.json();
         const categorytData = SuperJSON.deserialize<MonumentCategory[]>(
@@ -285,7 +285,7 @@ const UpdateMonumentPage = () => {
         setCategoryList(monumentCategoryMap);
 
         const response = await fetch(
-          `http://localhost:3000/api/monuments?id=${slug}`
+          `${process.env.NEXT_PUBLIC_API_BASE_ROUTE}monuments?id=${slug}`
         ); // API call
         const jsonData = await response.json();
         const data = SuperJSON.deserialize<Monument>(jsonData.data);

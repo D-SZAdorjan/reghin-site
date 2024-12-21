@@ -10,7 +10,7 @@ const MonumentCategoriesPage = async () => {
   let jsonData;
 
   try {
-    const response = await fetch("http://localhost:3000/api/monument-categories");
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_ROUTE}monument-categories`);
     jsonData = await response.json();
     data = SuperJSON.deserialize<MonumentCategory[]>(jsonData.data);
   } catch (error) {

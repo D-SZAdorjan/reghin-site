@@ -238,7 +238,7 @@ const UpdateArticlePage = () => {
     const fetchData = async () => {
       try {
         const categoryResponse = await fetch(
-          `http://localhost:3000/api/article-categories`
+          `${process.env.NEXT_PUBLIC_API_BASE_ROUTE}article-categories`
         ); // API call
         const categoryJsonData = await categoryResponse.json();
         const categoryData = SuperJSON.deserialize<ArticleCategory[]>(
@@ -253,7 +253,7 @@ const UpdateArticlePage = () => {
         setCategoryList(articleCategoryMap);
 
         const response = await fetch(
-          `http://localhost:3000/api/articles?id=${slug}`
+          `${process.env.NEXT_PUBLIC_API_BASE_ROUTE}articles?id=${slug}`
         ); // API call
         const jsonData = await response.json();
         const data = SuperJSON.deserialize<Article>(jsonData.data);

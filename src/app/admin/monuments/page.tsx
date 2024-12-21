@@ -11,7 +11,7 @@ const MonumentsPage = async () => {
   let jsonData;
 
   try{
-    const response = await fetch("http://localhost:3000/api/monuments");
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_ROUTE}monuments`);
     jsonData = await response.json();
     data = SuperJSON.deserialize<Monument[]>(jsonData.data);
   }catch(error){

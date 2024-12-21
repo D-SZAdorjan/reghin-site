@@ -11,7 +11,7 @@ const NotablePersonalitiesPage = async () => {
   let jsonData;
 
   try{
-    const response = await fetch("http://localhost:3000/api/notable-personalities");
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_ROUTE}notable-personalities`);
     jsonData = await response.json();
     data = SuperJSON.deserialize<Person[]>(jsonData.data);
   }catch(error){
