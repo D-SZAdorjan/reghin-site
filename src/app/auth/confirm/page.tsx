@@ -9,7 +9,7 @@ const ConfirmationPage = () => {
           <div className="w-full border-stroke dark:border-strokedark">
             <div className="w-full">
               <h2 className="mb-9 text-2xl font-bold text-black dark:text-white sm:text-title-xl2">
-                You successfully confirmed your email let's sign in!
+                You successfully confirmed your email let&apos;s sign in!
               </h2>
               <Link href="/admin/dashboard" className="w-full cursor-pointer rounded-lg border border-primary bg-primary p-4 text-white transition hover:bg-opacity-90">Sign In</Link>
             </div>

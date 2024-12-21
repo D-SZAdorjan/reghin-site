@@ -1,5 +1,5 @@
 "use client";
-import { PrismaClient, notable_personalities as Person, buildings as Building, churches as  Church} from "@prisma/client";
+import { NotablePersonality as Person, Monument as Building, Monument as Church} from "@prisma/client";
 import {
   faArrowLeft,
   faArrowRight,
@@ -119,7 +119,7 @@ const InfoCardSlider: React.FC<ComponentProps> = ({
                           <div className="flex items-center">
                             <span className="text-xs text-[#05073C]">
                               {
-                                item.lead?.toString()
+                                item.occupation?.toString()
                               }
                             </span>
                           </div>

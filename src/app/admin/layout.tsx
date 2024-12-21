@@ -4,7 +4,7 @@ config.autoAddCss = false;
 
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "../[locale]//globals.css";
+import "../[locale]/globals.css";
 import ContentWrapper from '@/components/Admin/Wrappers/ContentWrapper';
 import { createClient } from '@/lib/supabase/server';
 import { redirect } from 'next/navigation';

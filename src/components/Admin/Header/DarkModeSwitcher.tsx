@@ -1,13 +1,20 @@
 import useColorMode from "@/hooks/useColorMode";
+import { useEffect, useState } from "react";
 
 const DarkModeSwitcher = () => {
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   const [colorMode, setColorMode] = useColorMode();
 
   return (
     <li>
       <label
         className={`relative m-0 block h-7.5 w-14 rounded-full ${
-          colorMode === "dark" ? "bg-primary" : "bg-stroke"
+          isMounted && colorMode === "dark" ? "bg-primary" : "bg-stroke"
         }`}
       >
         <input
@@ -21,7 +28,7 @@ const DarkModeSwitcher = () => {
         />
         <span
           className={`absolute left-[3px] top-1/2 flex h-6 w-6 -translate-y-1/2 translate-x-0 items-center justify-center rounded-full bg-white shadow-switcher duration-75 ease-linear ${
-            colorMode === "dark" && "!right-[3px] !translate-x-full"
+            isMounted && colorMode === "dark" ? "!right-[3px] !translate-x-full" : ""
           }`}
         >
           <span className="dark:hidden">

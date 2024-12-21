@@ -1,6 +1,6 @@
-const GridRow = ({ children, className = "" }: Readonly<{ children?: React.ReactNode; className?: string | "" }>) => {
+const GridRow = ({ children, className = "mx-[calc(30px*-0.5)] justify-between items-center" }: Readonly<{ children?: React.ReactNode; className?: string | "" }>) => {
   return (
-    <div className={`row -gap-1.5 flex flex-wrap mx-[calc(30px*-0.5)] justify-between items-center ${className}`}>
+    <div className={`row -gap-1.5 flex flex-wrap ${className}`}>
       {children}
     </div>
   );

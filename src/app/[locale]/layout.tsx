@@ -5,6 +5,8 @@ config.autoAddCss = false;
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import NavigationBar from '@/components/NavBar/NavigationBar';
+import Footer from '@/components/Footer/Footer';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,7 +21,7 @@ export async function generateStaticParams() {
 
 export default function RootLayout({
   children,
-  params: {locale},
+  params: { locale },
 }: Readonly<{
   children: React.ReactNode;
   params: {
@@ -28,7 +30,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang={locale}>
-      <body className={`${inter.className} h-lvh`}>{children}</body>
+      <body className={inter.className}>
+        <NavigationBar locale={locale}/>
+        <main className="overflow-hidden">
+          {children}
+        </main>
+        <Footer locale={locale}/>
+      </body>
     </html>
   );
 }

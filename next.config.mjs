@@ -1,5 +1,18 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'uilvjvbbjgbdkimfoxjq.supabase.co',
+      },
+      {
+        protocol: 'https',
+        hostname: 'storage.googleapis.com',
+      }
+      // Add the domain here
+    ],
+  },
   async redirects() {
     return [
       // Admin redirect
