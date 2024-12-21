@@ -1,3 +1,26 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.tox-tinymce{
+    border-color: rgb(61 77 96 / var(--tw-border-opacity))!important;
+}
+
+.flatpickr-wrapper{
+    width: 100%;
+    position: relative;
+}
+
+.flatpickr-wrapper::after{
+    content: url("/img/icons/calendar.svg");
+    display: block;
+    position: absolute;
+    right: 1.25rem;
+    top: 0;
+    bottom: 0;
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 18px;
+    height: 18px;
+    z-index: 0;
+}

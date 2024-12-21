@@ -4,14 +4,17 @@ import Link from 'next/link'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowUp } from '@fortawesome/free-solid-svg-icons'
 import Image from 'next/image'
+import placeholderImg from '../../public/img/placeholder.png';
 import ChurchImage1 from '../../public/img/churches/1.jpg';
+
 import ChurchImage2 from '../../public/img/churches/2.jpg';
 import ChurchImage3 from '../../public/img/churches/3.jpg';
 import ChurchImage4 from '../../public/img/churches/4.jpg';
+import { Monument } from '@prisma/client'
 
 
 
-const ChurchesSection = () => {
+const ChurchesSection = ({ data = [], locale = "en" }: { data?: Monument[], locale?: string }) => {
   return (
     <section className="pb-20">
       <div className="container mx-auto">
@@ -29,8 +32,36 @@ const ChurchesSection = () => {
             </Link>
           </div>
         </GridRow>
-        <GridRow className="pt-14">
-          <div className="flex-[0_0_auto] py-4 w-1/4 box-border max-w-full px-[calc(30px*0.5)]">
+        <GridRow className="mx-[calc(30px*-0.5)] justify-between items-center pt-14">
+          {data.map((church, index) => {
+            const typedChurchTitle = church.name as {
+              [key: string]: string;
+            };
+            return (
+              <div key={`church-${church.id}-${index}`} className="flex-[0_0_auto] py-4 w-full sm:w-1/2 lg:w-1/4 box-border max-w-full px-[calc(30px*0.5)]">
+                <Link
+                  href="/"
+                  className="relative z-0 no-underline group block"
+                >
+                  <div className="overflow-hidden rounded-xl relative block">
+                    <Image
+                      width={450}
+                      height={600}
+                      src={church.image ? church.image : placeholderImg}
+                      alt="image"
+                      className="img-ratio aspect-[9/12] object-cover group-hover:scale-150 transition duration-700 ease-in-out"
+                    />
+                  </div>
+                  <div className="h-full w-full bg-black z-10 absolute top-0 left-0 rounded-xl opacity-60 hidden group-hover:flex justify-center items-center ">
+                    <h3 className="text-white text-center text-2xl font-semibold">
+                      { typedChurchTitle[locale] ? typedChurchTitle[locale] : typedChurchTitle["hu"] }
+                    </h3>
+                  </div>
+                </Link>
+              </div>
+            );
+          })}
+          {/* <div className="flex-[0_0_auto] py-4 w-1/4 box-border max-w-full px-[calc(30px*0.5)]">
             <Link href="/" className="relative z-0 no-underline group block">
               <div className="overflow-hidden rounded-xl relative block">
                 <Image
@@ -93,7 +124,7 @@ const ChurchesSection = () => {
                 <h3 className="text-white text-center text-2xl font-semibold">Church 4</h3>
               </div>
             </Link>
-          </div>
+          </div> */}
         </GridRow>
       </div>
     </section>

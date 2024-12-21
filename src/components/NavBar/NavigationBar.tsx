@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import {
   faAngleDown,
   faFlag,
@@ -6,15 +6,32 @@ import {
   faSearch,
   faTag,
 } from "@fortawesome/free-solid-svg-icons";
-import LogoImg from "../../public/viatours.svg";
-import RecentSearchImage from "../../public/pexels-samsilitongajr-842687.jpg";
+import LogoImg from "../../../public/img/viatours.svg";
+import RecentSearchImage from "../../../public/img/pexels-samsilitongajr-842687.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
-import languages from "@/api/getLanguages";
+import React, { useCallback, useEffect, useState } from "react";
+import languages from "@/app/api/getLanguages";
 
-const NavigationBar = ({locale}: { locale: string; }) => {
+const NavigationBar = ({ locale }: { locale: string }) => {
+  const [scrollY, setScrollY] = useState(0);
+  // Getting the scroll position
+  const onScroll = useCallback(() => {
+    const { pageYOffset, scrollY } = window;
+    // console.log("yOffset", pageYOffset, "scrollY", scrollY);
+    setScrollY(window.pageYOffset);
+  }, []);
+
+  useEffect(() => {
+    //add eventlistener to window
+    window.addEventListener("scroll", onScroll, { passive: true } as AddEventListenerOptions);
+    // remove event on unmount to prevent a memory leak with the cleanup
+    return () => {
+      window.removeEventListener("scroll", onScroll, { passive: true } as AddEventListenerOptions);
+    };
+  }, []);
+
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [searchOpen, serSearchOpen] = useState<boolean>(false);
 
@@ -26,8 +43,8 @@ const NavigationBar = ({locale}: { locale: string; }) => {
     serSearchOpen((old) => !old);
   };
   return (
-    <header className="fixed top-0 start-0 right-0 z-50 bg-transparent transition duration-200">
-      <div className="container mx-auto flex items-center justify-between min-h-20">
+    <header className={`fixed top-0 start-0 right-0 z-50 ${scrollY > 200 ? "bg-slate-900" : "bg-transparent"} transition duration-200`}>
+      <div className="container relative mx-auto flex items-center justify-between min-h-20">
         <div className="header-left text-white">
           <div className="header-search relative flex items-center bg-transparent">
             <FontAwesomeIcon
@@ -121,15 +138,15 @@ const NavigationBar = ({locale}: { locale: string; }) => {
             </div>
           </div>
         </div>
-        <div className=""></div>
-        <div className="header-center">
+        {/* <div className=""></div> */}
+        <div className="header-center absolute mx-auto left-1/2 -ml-[83px]">
           <div className="flex align-center">
             <Link href={"/"} className="flex align-center">
               <Image width={167} height={32} src={LogoImg} alt="Webstie Logo" />
             </Link>
           </div>
         </div>
-        <div className=""></div>
+        {/* <div className=""></div> */}
         <div className="header-right flex items-center">
           <div className="text-white">
             <div className="relative text-white">
@@ -137,7 +154,7 @@ const NavigationBar = ({locale}: { locale: string; }) => {
                 className="dropdown-button flex items-center transition duration-200 cursor-pointer py-2 px-5 rounded-full hover:bg-white/[0.1]"
                 onClick={toggleDropdown}
               >
-                {languages.find(lang => lang.slug === locale)?.abbreviation}
+                {languages.find((lang) => lang.slug === locale)?.abbreviation}
                 <FontAwesomeIcon className="ms-1" icon={faAngleDown} />
               </div>
               <div
@@ -151,23 +168,14 @@ const NavigationBar = ({locale}: { locale: string; }) => {
                   <div className="header-dropdown-container bg-white w-56 rounded-xl py-5 px-10 border border-solid border-[#e7e6e6] shadow-lg">
                     {languages.map((lang, index) => (
                       <div key={`${lang.abbreviation}_${index}`}>
-                        <Link href={lang.slug} className="header-dropdown-item text-sm font-medium text-black leading-[200%] hover:cursor-pointer hover:underline hover:decoration-1 hover:text-orange-400">
-                        {lang.lang}
-                      </Link>
+                        <Link
+                          href={lang.slug}
+                          className="header-dropdown-item text-sm font-medium text-black leading-[200%] hover:cursor-pointer hover:underline hover:decoration-1 hover:text-orange-400"
+                        >
+                          {lang.lang}
+                        </Link>
                       </div>
                     ))}
-                    {/* <div className="header-dropdown-item text-sm font-medium text-black leading-[200%] hover:cursor-pointer hover:underline hover:decoration-1 hover:text-orange-400">
-                      HUN
-                    </div>
-                    <div className="header-dropdown-item text-sm font-medium text-black leading-[200%] hover:cursor-pointer hover:underline hover:decoration-1 hover:text-orange-400">
-                      ROM
-                    </div>
-                    <div className="header-dropdown-item text-sm font-medium text-black leading-[200%] hover:cursor-pointer hover:underline hover:decoration-1 hover:text-orange-400">
-                      FRE
-                    </div>
-                    <div className="header-dropdown-item text-sm font-medium text-black leading-[200%] hover:cursor-pointer hover:underline hover:decoration-1 hover:text-orange-400">
-                      GER
-                    </div> */}
                   </div>
                 </div>
               </div>

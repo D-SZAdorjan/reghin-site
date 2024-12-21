@@ -35,8 +35,8 @@ const HospitalitySection = () => {
             </Link>
           </div>
         </GridRow>
-        <GridRow className="pt-14">
-          <div className="flex w-2/6 box-border max-w-full px-[calc(30px*0.5)] mt-0 py-4">
+        <GridRow className="mx-[calc(30px*-0.5)] justify-between items-center pt-14">
+          <div className="flex w-full sm:w-1/2 lg:w-2/6 box-border max-w-full px-[calc(30px*0.5)] mt-0 py-4">
             <Link href="/" className="flex items-center group">
               <div className="relative rounded-xl overflow-hidden shrink-0 w-[100px] h-[100px] box-border">
                 <Image
@@ -53,7 +53,7 @@ const HospitalitySection = () => {
               </div>
             </Link>
           </div>
-          <div className="flex w-2/6 box-border max-w-full px-[calc(30px*0.5)] mt-0 py-4">
+          <div className="flex w-full sm:w-1/2 lg:w-2/6 box-border max-w-full px-[calc(30px*0.5)] mt-0 py-4">
             <Link href="/" className="flex items-center group">
               <div className="relative rounded-xl overflow-hidden shrink-0 w-[100px] h-[100px] box-border">
                 <Image
@@ -70,7 +70,7 @@ const HospitalitySection = () => {
               </div>
             </Link>
           </div>
-          <div className="flex w-2/6 box-border max-w-full px-[calc(30px*0.5)] mt-0 py-4">
+          <div className="flex w-full sm:w-1/2 lg:w-2/6 box-border max-w-full px-[calc(30px*0.5)] mt-0 py-4">
             <Link href="/" className="flex items-center group">
               <div className="relative rounded-xl overflow-hidden shrink-0 w-[100px] h-[100px] box-border">
                 <Image
@@ -87,7 +87,7 @@ const HospitalitySection = () => {
               </div>
             </Link>
           </div>
-          <div className="flex w-2/6 box-border max-w-full px-[calc(30px*0.5)] mt-0 py-4">
+          <div className="flex w-full sm:w-1/2 lg:w-2/6 box-border max-w-full px-[calc(30px*0.5)] mt-0 py-4">
             <Link href="/" className="flex items-center group">
               <div className="relative rounded-xl overflow-hidden shrink-0 w-[100px] h-[100px] box-border">
                 <Image
@@ -104,7 +104,7 @@ const HospitalitySection = () => {
               </div>
             </Link>
           </div>
-          <div className="flex w-2/6 box-border max-w-full px-[calc(30px*0.5)] mt-0 py-4">
+          <div className="flex w-full sm:w-1/2 lg:w-2/6 box-border max-w-full px-[calc(30px*0.5)] mt-0 py-4">
             <Link href="/" className="flex items-center group">
               <div className="relative rounded-xl overflow-hidden shrink-0 w-[100px] h-[100px] box-border">
                 <Image
@@ -121,7 +121,7 @@ const HospitalitySection = () => {
               </div>
             </Link>
           </div>
-          <div className="flex w-2/6 box-border max-w-full px-[calc(30px*0.5)] mt-0 py-4">
+          <div className="flex w-full sm:w-1/2 lg:w-2/6 box-border max-w-full px-[calc(30px*0.5)] mt-0 py-4">
             <Link href="/" className="flex items-center group">
               <div className="relative rounded-xl overflow-hidden shrink-0 w-[100px] h-[100px] box-border">
                 <Image
@@ -138,7 +138,7 @@ const HospitalitySection = () => {
               </div>
             </Link>
           </div>
-          <div className="flex w-2/6 box-border max-w-full px-[calc(30px*0.5)] mt-0 py-4">
+          <div className="flex w-full sm:w-1/2 lg:w-2/6 box-border max-w-full px-[calc(30px*0.5)] mt-0 py-4">
             <Link href="/" className="flex items-center group">
               <div className="relative rounded-xl overflow-hidden shrink-0 w-[100px] h-[100px] box-border">
                 <Image
@@ -155,7 +155,7 @@ const HospitalitySection = () => {
               </div>
             </Link>
           </div>
-          <div className="flex w-2/6 box-border max-w-full px-[calc(30px*0.5)] mt-0 py-4">
+          <div className="flex w-full sm:w-1/2 lg:w-2/6 box-border max-w-full px-[calc(30px*0.5)] mt-0 py-4">
             <Link href="/" className="flex items-center group">
               <div className="relative rounded-xl overflow-hidden shrink-0 w-[100px] h-[100px] box-border">
                 <Image
@@ -172,7 +172,7 @@ const HospitalitySection = () => {
               </div>
             </Link>
           </div>
-          <div className="flex w-2/6 box-border max-w-full px-[calc(30px*0.5)] mt-0 py-4">
+          <div className="flex w-full sm:w-1/2 lg:w-2/6 box-border max-w-full px-[calc(30px*0.5)] mt-0 py-4">
             <Link href="/" className="flex items-center group">
               <div className="relative rounded-xl overflow-hidden shrink-0 w-[100px] h-[100px] box-border">
                 <Image

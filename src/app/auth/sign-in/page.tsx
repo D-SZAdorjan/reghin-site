@@ -4,7 +4,7 @@ import { revalidatePath } from "next/cache";
 import { redirect, useRouter } from "next/navigation";
 import React from "react";
 
-const page = () => {
+const SignInPage = () => {
   const router = useRouter();
   
   const handleSignIn = async (formData: FormData) => {
@@ -116,4 +116,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default SignInPage;
